@@ -1,0 +1,13 @@
+# project files
+.vscode/
+node_modules/
+dist/
+data/
+
+# secret stuff
+client_secret.json*
+.env*
+
+# thumbnail info
+.DS_Store
+Thumbs.db
