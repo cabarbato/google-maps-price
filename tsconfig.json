@@ -8,13 +8,13 @@
       "dom.iterable",
       "scripthost"
     ],
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
-    "noEmitOnError": true,
-    "strict": true,
-    "noUnusedLocals": true,
+    "noEmitOnError": false,
+    "strict": false,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "esModuleInterop": true
