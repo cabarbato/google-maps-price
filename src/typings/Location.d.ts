@@ -16,5 +16,5 @@ export interface Location {
     state: string,
     zip_code: string,
     url: string,
-    price_level: unknown | number
+    price_level: unknown | string
 }

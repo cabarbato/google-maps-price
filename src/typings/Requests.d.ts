@@ -1,12 +1,3 @@
-export interface ThrowError {
-    response: {
-        data: {
-            error_message: string
-        }
-    }
-
-}
-
 export interface PriceDetail {
     data: {
         result: {
@@ -17,7 +8,7 @@ export interface PriceDetail {
 
 export interface PlaceId {
     data: {
-        candidates: {
+        predictions: {
             place_id: string
         }[]
     }
