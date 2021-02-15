@@ -1,10 +1,13 @@
+import fs from 'fs';
 import 'dotenv/config';
-import MapRequest from './MapRequest';
-import CsvParser from './CsvParser';
-import { Location } from './typings/Location';
+import Papa from 'papaparse';
+import LocationSearch from './Location';
+import { LocationType } from './typings/Location';
+import { schema } from '../data/schema';
 
-const Search = new MapRequest(process.env.API_KEY!),
-  Parser = new CsvParser(process.env.DATA_FILE!),
-  locations: any = Parser.getRows();
+const file = process.env.INPUT_FILE! as string,
+  Search = new LocationSearch(schema! as string[]);
 
-locations.data.forEach((location: Location) => Search.placeSearch(location));
+Papa.parse(fs.readFileSync(file, 'utf8'), {
+  header: true,
+}).data.forEach((location: LocationType) => Search.writeRow(location));

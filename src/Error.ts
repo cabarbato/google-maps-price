@@ -1,9 +1,5 @@
-import { ThrowError, ApiError } from './typings/Error.d';
+import { APIErrorType } from './typings/Error';
 
-export function throwError(err: ThrowError) {
-    throw console.error(err)
-}
-
-export function apiError(err: ApiError) {
+export function APIError(err: APIErrorType) {
     console.error(err)
 }

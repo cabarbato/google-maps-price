@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES6",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "es6",
-      "dom.iterable",
-      "scripthost"
-    ],
-    "sourceMap": false,
+    "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
     "noEmitOnError": false,
     "strict": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noImplicitReturns": true,
     "esModuleInterop": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

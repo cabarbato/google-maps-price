@@ -1,14 +1,10 @@
-export interface ApiError {
+export interface APIErrorType {
     response: {
         data: {
             error_message: string
         }
     }
 
-}
-
-export interface ThrowError {
-    response: any
 }
 
 
