@@ -11,9 +11,9 @@ export default class LocationSearch {
   client: Client;
 
   constructor(header: string[]) {
-    this.header = [...header, 'price_level'];
     this.key = process.env.API_KEY! as string;
     this.file = process.env.OUTPUT_FILE! as string;
+    this.header = [...header, 'price_level'];
     this.client = new Client({});
 
     fs.writeFileSync(this.file, this.header + '\n');
@@ -55,6 +55,6 @@ export default class LocationSearch {
     fs.appendFileSync(
       this.file,
       [...Object.values(location), price_level] + '\n'
-    ); // TODO: wrap values in quotes probably
+    );
   }
 }

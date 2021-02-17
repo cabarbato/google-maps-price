@@ -12,8 +12,8 @@ export interface DataType {
 
 export interface PlaceIdType {
   data: {
-      predictions: {
-          place_id: string
-      }[]
-  }
+    predictions: {
+      place_id: string;
+    }[];
+  };
 }

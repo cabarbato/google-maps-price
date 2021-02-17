@@ -1,10 +1,7 @@
 export interface APIErrorType {
-    response: {
-        data: {
-            error_message: string
-        }
-    }
-
+  response: {
+    data: {
+      error_message: string;
+    };
+  };
 }
-
-
