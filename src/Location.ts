@@ -2,14 +2,13 @@ import fs from 'fs';
 import 'dotenv/config';
 import { Client } from '@googlemaps/google-maps-services-js';
 import { APIError } from './Error';
-import { LocationType } from './typings/Location';
-import { PriceDetailType, PlaceIdType } from './typings/Requests';
+import { LocationType, PlaceIdType } from './typings/Location';
 
 export default class LocationSearch {
   key: string;
   file: string;
   header: string[];
-  client: any; //TODO: get actual client type
+  client: Client;
 
   constructor(header: string[]) {
     this.header = [...header, 'price_level'];
@@ -20,8 +19,8 @@ export default class LocationSearch {
     fs.writeFileSync(this.file, this.header + '\n');
   }
 
-  placeDetails(id: string): Promise<string> {
-    return new Promise(rs =>
+  private placeDetails(id: string): Promise<number> {
+    return new Promise((rs) =>
       this.client
         .placeDetails({
           params: {
@@ -30,13 +29,13 @@ export default class LocationSearch {
             fields: ['price_level'],
           },
         })
-        .then((d: PriceDetailType) => rs(d['data']['result']['price_level']))
+        .then((d) => rs(d['data']['result']['price_level']))
         .catch(APIError)
     );
   }
 
-  placeSearch(location: LocationType): Promise<string> {
-    return new Promise(rs =>
+  private placeSearch(location: LocationType): Promise<number> {
+    return new Promise((rs) =>
       this.client
         .placeAutocomplete({
           params: {
@@ -52,8 +51,10 @@ export default class LocationSearch {
   }
 
   async writeRow(location: LocationType) {
-      let price_level = await this.placeSearch(location);
-      console.log(price_level)
-    return fs.appendFileSync(this.file, [...Object.values(location), price_level] + '\n'); // TODO: wrap values in quotes probably
+    let price_level = await this.placeSearch(location);
+    fs.appendFileSync(
+      this.file,
+      [...Object.values(location), price_level] + '\n'
+    ); // TODO: wrap values in quotes probably
   }
 }

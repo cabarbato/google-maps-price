@@ -3,11 +3,16 @@ import 'dotenv/config';
 import Papa from 'papaparse';
 import LocationSearch from './Location';
 import { LocationType } from './typings/Location';
-import { schema } from '../data/schema';
 
-const file = process.env.INPUT_FILE! as string,
-  Search = new LocationSearch(schema! as string[]);
+const input_file = process.env.INPUT_FILE! as string,
+  file_data = fs.readFileSync(input_file, 'utf8'),
+  csv = Papa.parse(file_data, {
+    header: true,
+  }),
+  header = csv.meta.fields! as string[],
+  locations = csv.data,
+  Search = new LocationSearch(header);
 
-Papa.parse(fs.readFileSync(file, 'utf8'), {
-  header: true,
-}).data.forEach((location: LocationType) => Search.writeRow(location));
+locations.forEach((location: LocationType) => {
+  Search.writeRow(location);
+});

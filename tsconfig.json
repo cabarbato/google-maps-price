@@ -6,10 +6,10 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
-    "noEmitOnError": false,
+    "noEmitOnError": true,
     "strict": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "esModuleInterop": true
   }
